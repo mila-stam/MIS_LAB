@@ -14,7 +14,7 @@ class ExamRooms extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.deepPurple.withOpacity(0.15),
+            color: Colors.deepPurple.withValues(alpha: 0.15),
             blurRadius: 8,
             offset: const Offset(2, 4),
           ),

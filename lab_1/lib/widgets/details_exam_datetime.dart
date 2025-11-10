@@ -22,7 +22,7 @@ class ExamDateTime extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.deepPurple.withOpacity(0.1),
+            color: Colors.deepPurple.withValues(alpha: 0.1),
             blurRadius: 8,
             offset: const Offset(2, 4),
           ),

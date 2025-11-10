@@ -20,11 +20,11 @@ class ExamCard extends StatelessWidget {
     return Card(
       elevation: 6,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      shadowColor: Colors.purple.withOpacity(0.4),
+      shadowColor: Colors.purple.withValues(alpha: 0.4),
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
         onTap: onTap,
-        splashColor: Colors.purpleAccent.withOpacity(0.3),
+        splashColor: Colors.purpleAccent.withValues(alpha: 0.3),
         child: Container(
           padding: const EdgeInsets.all(10.0),
           decoration: BoxDecoration(
