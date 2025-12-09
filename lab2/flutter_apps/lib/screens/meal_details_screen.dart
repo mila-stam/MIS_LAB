@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/recipe.dart';
+import '../services/favorites_service.dart';
 import '../services/meal_api_service.dart';
 
 class MealDetailScreen extends StatefulWidget {
@@ -15,6 +16,7 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
   bool _isLoading = true;
   late Recipe _recipe;
   final MealApiService apiService = MealApiService();
+  final FavoritesService favoritesService = FavoritesService();
 
   @override
   void initState() {
@@ -59,6 +61,22 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
         ),
         backgroundColor: Color(0xFFB56576),
         iconTheme: IconThemeData(color: Color(0xFF355070)),
+        actions: [
+          if (!_isLoading)
+            IconButton(
+              icon: Icon(
+                favoritesService.isFavorite(_recipe.id)
+                    ? Icons.favorite
+                    : Icons.favorite_border,
+                color: Colors.redAccent,
+              ),
+              onPressed: () {
+                setState(() {
+                  favoritesService.toggleFavorite(_recipe);
+                });
+              },
+            ),
+        ],
       ),
       body: _isLoading
           ? Center(child: CircularProgressIndicator(color: Color(0xFFB56576)))

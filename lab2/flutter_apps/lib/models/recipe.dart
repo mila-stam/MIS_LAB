@@ -7,6 +7,7 @@ class Recipe {
   final String imageUrl;
   final String? youtubeUrl;
   final List<Ingredient> ingredients;
+  bool isFavorite;
 
   Recipe({
     required this.id,
@@ -15,6 +16,7 @@ class Recipe {
     required this.imageUrl,
     this.youtubeUrl,
     required this.ingredients,
+    this.isFavorite = false,
   });
 
   factory Recipe.fromJson(Map<String, dynamic> json) {

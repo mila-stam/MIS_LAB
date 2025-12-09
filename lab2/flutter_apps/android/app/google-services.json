@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "90262009210",
+    "project_id": "recipeslab-68f9e",
+    "storage_bucket": "recipeslab-68f9e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90262009210:android:a45cbf7af109d7608fd2c3",
+        "android_client_info": {
+          "package_name": "com.example.flutter_apps"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7pBEeL8oZXCUFKF_MSfixBFy_DVqmiyA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,11 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_apps/screens/favorites_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/meal_details_screen.dart';
 import 'services/meal_api_service.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
-void main() {
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+}
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
+  final messaging = FirebaseMessaging.instance;
+  await messaging.requestPermission(
+    alert: true,
+    badge: true,
+    sound: true,
+  );
+  await messaging.setAutoInitEnabled(true);
+
+  // NEW: print token
+  final token = await messaging.getToken();
+  debugPrint('FCM TOKEN = $token');
+
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    debugPrint('FCM in foreground: ${message.notification?.title}');
+  });
+
   runApp(RecipeApp());
 }
+
 
 class RecipeApp extends StatelessWidget {
   final MealApiService apiService = MealApiService();
@@ -75,6 +109,15 @@ class RecipeApp extends StatelessWidget {
                   tooltip: 'Random Recipe',
                   onPressed: () => _showRandomRecipe(context),
                 ),
+              ),
+              IconButton(
+                icon: Icon(Icons.favorite, color: Color(0xFF355070)),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => FavoritesScreen()),
+                  );
+                },
               ),
             ],
           ),
